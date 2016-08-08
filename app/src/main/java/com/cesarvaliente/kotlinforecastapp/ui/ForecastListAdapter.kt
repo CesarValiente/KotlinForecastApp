@@ -13,7 +13,7 @@ import com.cesarvaliente.kotlinforecastapp.ui.utils.ctx
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.find
 
-class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Forecast) -> Unit) :
+class ForecastListAdapter(private val weekForecast: ForecastList, private val itemClick: (Forecast) -> Unit) :
         RecyclerView.Adapter<ForecastListAdapter.Viewholder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
@@ -29,7 +29,7 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
         return weekForecast.size()
     }
 
-    class Viewholder(val view: View, val itemClick: (Forecast) -> Unit) :
+    class Viewholder(view: View, private val itemClick: (Forecast) -> Unit) :
             RecyclerView.ViewHolder(view) {
         private val iconView: ImageView
         private val dateView: TextView

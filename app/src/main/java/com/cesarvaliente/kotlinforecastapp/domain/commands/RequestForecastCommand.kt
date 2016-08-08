@@ -4,7 +4,7 @@ import com.cesarvaliente.kotlinforecastapp.domain.mappers.ForecastDataMapper
 import com.cesarvaliente.kotlinforecastapp.domain.model.ForecastList
 import com.cesarvaliente.kotlinforecastapp.net.ForecastRequest
 
-class RequestForecastCommand (val zipCode: String) : Command<ForecastList> {
+class RequestForecastCommand(private val zipCode: String) : Command<ForecastList> {
 
     override fun execute(): ForecastList {
         val forecastRequest = ForecastRequest(zipCode)
