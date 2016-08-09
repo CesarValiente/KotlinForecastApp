@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.cesarvaliente.kotlinforecastapp.R
 import com.cesarvaliente.kotlinforecastapp.domain.commands.RequestForecastCommand
+import com.cesarvaliente.kotlinforecastapp.domain.model.ForecastList
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.toast
@@ -31,11 +32,13 @@ class MainActivity : AppCompatActivity() {
 
         doAsync() {
             val result = RequestForecastCommand("94043").execute()
-            uiThread {
-                val adapter = ForecastListAdapter(result) { toast(it.date) }
-                foreCastList.adapter = adapter
-            }
+            uiThread { updateUi(result) }
         }
+    }
+
+    private fun updateUi(result: ForecastList) {
+        val adapter = ForecastListAdapter(result) { toast(it.date) }
+        foreCastList.adapter = adapter
     }
 
 }
